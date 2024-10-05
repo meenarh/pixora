@@ -6,15 +6,20 @@
         type="text"
         v-model="searchQuery"
         @keyup.enter="handleSearch"
-        placeholder="Search for photo"
+        placeholder="Search for photos"
       />
+    </div>
+
+    <!-- search results text -->
+    <div v-if="showSearchResults" class="search-results">
+      <h2>Search results for "{{ searchQuery }}"</h2>
     </div>
 
     <!-- photo grid -->
     <div class="photo-grid">
       <div v-if="loading" class="loading-placeholder-grid">
         <!-- skeleton loading placeholders -->
-        <div v-for="n in 8" :key="n" class="photo-skeleton">
+        <div v-for="n in 9" :key="n" class="photo-skeleton">
           <div class="skeleton-image"></div>
           <div class="skeleton-details">
             <div class="skeleton-text"></div>
@@ -33,9 +38,7 @@
           <img :src="photo.urls.regular" :alt="photo.description" />
           <div class="photo-details">
             <p>{{ photo.user.name }}</p>
-            <p>
-              {{ photo.user.location }}
-            </p>
+            <p>{{ photo.user.location }}</p>
           </div>
         </div>
       </div>
@@ -51,7 +54,7 @@
 </template>
 
 <script>
-import { getPhotos, searchPhotos } from "@/services/service";
+import { getPhotos, searchPhotos } from "@/api/pixora";
 import ImageModal from "@/components/ImageModal.vue";
 
 export default {
@@ -65,6 +68,7 @@ export default {
       selectedPhoto: null,
       isModalVisible: false,
       loading: true,
+      showSearchResults: false,  // Tracks if a search was initiated
     };
   },
   async created() {
@@ -74,11 +78,12 @@ export default {
     async fetchLatestPhotos() {
       try {
         this.loading = true;
-        this.photos = await getPhotos();
+        this.photos = await getLatestAfricanPhotos();
       } catch (error) {
         console.error("Error fetching photos:", error);
       } finally {
         this.loading = false;
+        this.showSearchResults = false; // Reset search result message when fetching latest photos
       }
     },
     async handleSearch() {
@@ -90,6 +95,7 @@ export default {
       try {
         this.loading = true;
         this.photos = await searchPhotos(this.searchQuery);
+        this.showSearchResults = true; // Set flag to show search result message
       } catch (error) {
         console.error("Error searching photos:", error);
       } finally {
@@ -127,36 +133,40 @@ export default {
     }
   }
 
+  .search-results {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
   .photo-grid {
     display: grid;
-    grid-template: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin: 16px 0;
   }
 
-  .photo-grid img {
-    width: 300px;
-    height: 600px;
+  .photo-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
   }
 
   .loading-placeholder-grid {
     display: grid;
-    grid-template: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
 
   .photo-skeleton {
-    display: flex;
-    flex-direction: column;
     background-color: #f0f0f0;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
 
     .skeleton-image {
-      width: 300px;
+      width: 100%;
       height: 400px;
       background-color: #ddd;
-      border-radius: 5px;
+      border-radius: 8px;
       margin-bottom: 10px;
       animation: shimmer 1.5s infinite;
     }
@@ -172,31 +182,12 @@ export default {
         &.short {
           width: 60%;
         }
-        &.medium {
-          width: 80%;
-        }
       }
-    }
-  }
-
-  @keyframes shimmer {
-    0% {
-      background-position: -200px 0;
-    }
-    100% {
-      background-position: calc(200px + 100%) 0;
     }
   }
 
   .photo-card {
     position: relative;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: auto;
-      transition: transform 0.3s ease;
-    }
 
     .photo-details {
       position: absolute;
@@ -208,6 +199,16 @@ export default {
 
     &:hover img {
       transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
     }
   }
 }
