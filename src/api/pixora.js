@@ -18,7 +18,6 @@ export const getPhotos = async (count = 9) => {
         query: 'africa',
       },
     });
-    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error('Error fetching photos:', error);
@@ -34,7 +33,6 @@ export const searchPhotos = async (query) => {
         per_page: 20,
       },
     });
-    console.log(response.data)
     return response.data.results;
   } catch (error) {
     console.error('Error searching for photos:', error);

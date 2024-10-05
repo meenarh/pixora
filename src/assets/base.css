@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+*{
+  font-family: 'Satoshi', sans-serif;
+}
 /* :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
