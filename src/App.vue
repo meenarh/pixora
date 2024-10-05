@@ -211,8 +211,8 @@ export default {
 }
 
 .photo-card:nth-child(3n + 2) {
-    margin-top: 40px;
-  }
+  margin-top: 40px;
+}
 
 .photo-card img {
   width: 100%;
@@ -284,7 +284,21 @@ export default {
 
   .photo-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
     margin: 0 30px;
+  }
+  .photo-card:nth-child(3n + 2) {
+    margin-top: 0;
+  }
+
+  .skeleton-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 0 30px;
+  }
+
+  .photo-skeleton:nth-child(3n + 2) {
+    margin-top: 0;
   }
 }
 
@@ -307,13 +321,22 @@ export default {
 
   .photo-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
     margin: 0 20px;
   }
 
-  .photo-card {
-    .photo-card:nth-child(3n + 2) {
-      margin-top: 0; 
-    }
+  .photo-card:nth-child(3n + 2) {
+    margin-top: 0;
+  }
+
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 0 30px;
+  }
+
+  .photo-skeleton:nth-child(3n + 2) {
+    margin-top: 0;
   }
 }
 
@@ -334,17 +357,27 @@ export default {
 
   .container {
     margin-top: 10px;
+    margin-bottom: 20px;
     padding: 0 10px;
   }
 
   .photo-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 
-  .photo-card {
-    .photo-card:nth-child(3n + 2) {
-      margin-top: 0; 
-    }
+  .photo-card:nth-child(3n + 2) {
+    margin-top: 0;
+  }
+
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 0 30px;
+  }
+
+  .photo-skeleton:nth-child(3n + 2) {
+    margin-top: 0;
   }
 }
 </style>
