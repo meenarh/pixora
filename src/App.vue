@@ -41,7 +41,7 @@
         >
           <img :src="photo.urls.small" :alt="photo.alt_description" />
           <div class="photo-details">
-            <p>{{ photo.user.name }}</p>
+            <h4>{{ photo.user.name }}</h4>
             <p>{{ photo.user.location || 'Unknown Location' }}</p>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default {
 .photo-card {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
 
   &::before {
     content: "";
@@ -218,6 +218,11 @@ export default {
     color: white;
     z-index: 2;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  .photo-details h4{
+    font-size: 1.2em;
+    font-weight: 500;
   }
 
   &:hover img {
