@@ -46,7 +46,7 @@
 
     <!-- image modal -->
     <ImageModal
-      :imageSrc="selectedPhoto?.urls.small"
+      :imageSrc="selectedPhoto?.urls.regular"
       :user="selectedPhoto?.user.name"
       :location="selectedPhoto?.user.location || 'Unknown Location'"
       :visible="isModalVisible"
@@ -131,6 +131,7 @@ export default {
   margin-bottom: 20px;
   background-color: #e2e8f0;
   padding: 150px 10px 180px 10px;
+  z-index: 0;
 
   input {
     position: absolute;
@@ -224,7 +225,9 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 120px;
+  // margin-top: 120px;
+  top: -40px;
+  z-index: 2;
 }
 
 .photo-skeleton:nth-child(3n + 2) {
