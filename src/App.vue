@@ -265,12 +265,16 @@ export default {
 
 @keyframes shimmer {
   0% {
-    background-position: -200px 0;
+    background-color: #f0f0f0;
+  }
+  50% {
+    background-color: #e0e0e0;
   }
   100% {
-    background-position: calc(200px + 100%) 0;
+    background-color: #f0f0f0;
   }
 }
+
 
 @media (max-width: 1200px) {
   .search-bar {
