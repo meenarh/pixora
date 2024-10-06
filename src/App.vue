@@ -35,10 +35,10 @@
           class="photo-card"
           @click="openModal(photo)"
         >
-          <img :src="photo.urls.small" :alt="photo.description" />
+          <img :src="photo.urls.small" :alt="photo.alt_description" />
           <div class="photo-details">
             <p>{{ photo.user.name }}</p>
-            <p>{{ photo.user.location }}</p>
+            <p>{{ photo.user.location ? photo.user.country : 'Unknown Location' }}</p>
           </div>
         </div>
       </div>

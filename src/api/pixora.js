@@ -18,6 +18,7 @@ export const getPhotos = async (count = 9) => {
         query: 'africa',
       },
     });
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error('Error fetching photos:', error);
@@ -30,7 +31,7 @@ export const searchPhotos = async (query) => {
     const response = await unsplashAPI.get('/search/photos', {
       params: {
         query,
-        per_page: 20,
+        per_page: 21,
       },
     });
     return response.data.results;
