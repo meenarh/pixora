@@ -280,6 +280,7 @@ export default {
 
   .container {
     padding: 0 20px;
+    margin-bottom: 20px;
   }
 
   .photo-grid {
@@ -317,6 +318,7 @@ export default {
 
   .container {
     margin-top: 10px;
+    margin-bottom: 20px;
   }
 
   .photo-grid {
