@@ -18,7 +18,6 @@ export const getPhotos = async (count = 9) => {
         query: 'africa',
       },
     });
-    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error('Error fetching photos:', error);

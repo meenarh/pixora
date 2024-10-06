@@ -15,6 +15,10 @@
       </div>
     </div>
 
+    <div v-if="searchQuery && !loading && photos.length === 0" class="error">
+      <h2>No results found for "{{ searchQuery }}"</h2>
+    </div>
+
     <!-- photo grid -->
     <div class="container">
       <div v-if="loading" class="skeleton-grid">
@@ -160,6 +164,17 @@ export default {
   font-size: 3em;
   text-align: left;
   font-weight: 500;
+}
+
+.error {
+  text-align: center;
+  margin-top: 50px;
+
+  h2 {
+    font-size: 2em;
+    color: #ff6347;
+    font-weight: 500;
+  }
 }
 
 .container {
