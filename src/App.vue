@@ -38,7 +38,7 @@
           <img :src="photo.urls.small" :alt="photo.alt_description" />
           <div class="photo-details">
             <p>{{ photo.user.name }}</p>
-            <p>{{ photo.user.location ? photo.user.country : 'Unknown Location' }}</p>
+            <p>{{ photo.user.location || 'Unknown Location' }}</p>
           </div>
         </div>
       </div>
